@@ -1,7 +1,13 @@
 # coding:utf8
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:ershi123@47.92.162.87:3306/movie'
+# # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost:3306/movie'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SECRET_KEY'] = "zyd"
+db = SQLAlchemy(app)
 app.debug = True
 
 from app.home import home as home_blueprint

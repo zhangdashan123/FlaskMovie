@@ -1,15 +1,8 @@
 # -*- coding:utf-8 -*-
 __author__ = 'zyd'
 
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:ershi123@47.92.162.87:3306/movie'
-# # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost:3306/movie'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+from app import db
 
 
 # 会员模型
@@ -198,7 +191,7 @@ class Oplog(db.Model):
 
 
 # '''
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # 1.创建出所有数据模型(第一次运行后就不用了,可以注释掉)
     # db.create_all()
 
@@ -214,14 +207,14 @@ if __name__ == '__main__':
 
     # 3.创建超级管理员的账号密码
     # 导入Hash加密密码模块
-    from werkzeug.security import generate_password_hash
-
-    admin = Admin(
-        name='zyd',
-        pwd=generate_password_hash('2733998'),
-        is_super=0,  # 是超级管理员
-        role_id=1
-    )
-    db.session.add(admin)
-    db.session.commit()
+    # from werkzeug.security import generate_password_hash
+    #
+    # admin = Admin(
+    #     name='zyd',
+    #     pwd=generate_password_hash('2733998'),
+    #     is_super=0,  # 是超级管理员
+    #     role_id=1
+    # )
+    # db.session.add(admin)
+    # db.session.commit()
 # '''
