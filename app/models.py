@@ -72,7 +72,6 @@ class Movie(db.Model):
     release_time = db.Column(db.Date)  # 上映时间
     length = db.Column(db.String(100))  # 电影长度
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
-
     comments = db.relationship('Comment', backref='movie')  # 电影评论外键关系关联
     moviecols = db.relationship('Moviecol', backref='movie')  # 电影收藏外键关系关联
 
