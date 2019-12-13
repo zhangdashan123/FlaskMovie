@@ -2,13 +2,12 @@
 import os
 import datetime
 import uuid
-from app import db
+from app import db, app
 from . import admin
 from flask import render_template, redirect, flash, url_for, session, request
 from app.admin.forms import LoginForm, TagForm, MovieForm
 from app.models import Admin, Tag, Movie
 from functools import wraps
-from app import db, app
 from werkzeug.utils import secure_filename
 
 
@@ -132,6 +131,7 @@ def movie_add():
     form = MovieForm()
     if form.validate_on_submit():
         data = form.data
+        print(data, data.get('title', 'none'))
         file_url = secure_filename(form.url.data.filename)
         file_logo = secure_filename(form.logo.data.filename)
         if not os.path.exists(app.config["UP_DIR"]):
@@ -142,7 +142,7 @@ def movie_add():
         form.url.data.save(app.config["UP_DIR"] + url)
         form.logo.data.save(app.config["UP_DIR"] + logo)
         movie = Movie(
-            movie=data['title'],
+            title=data['title'],
             url=url,
             info=data['info'],
             logo=logo,

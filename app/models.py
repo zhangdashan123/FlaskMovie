@@ -49,7 +49,6 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 编号
     name = db.Column(db.String(100), unique=True)  # 标签名
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 标签的添加时间
-
     movies = db.relationship('Movie', backref='tag')  # 电影外键关系关联
 
     def __repr__(self):
@@ -100,6 +99,8 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属用户
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 评论时间
 
+
+
     def __repr__(self):
         return '<Comment %r>' % self.id
 
@@ -111,6 +112,7 @@ class Moviecol(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))  # 所属电影
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属用户
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
+
 
     def __repr__(self):
         return '<Moviecol %r>' % self.id
