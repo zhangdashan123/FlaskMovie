@@ -249,7 +249,7 @@ class PwdForm(FlaskForm):
     )
 
     submit = SubmitField(
-        '修改',
+        '编辑',
         render_kw={
             'class': 'btn btn-primary'
         }
