@@ -1,6 +1,7 @@
 # coding:utf8
 import os
 from flask import Flask, render_template
+from flask_redis import FlaskRedis
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -8,10 +9,12 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ershi123@47.92.162.87:3306/movie'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SECRET_KEY'] = "zyd"
+app.config['REDIS_URL'] = "redis://localhost:6379/0"
 app.config['UP_DIR'] = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static/uploads/")
 app.config['FC_DIR'] = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static/uploads/users/")
-db = SQLAlchemy(app)
 app.debug = True
+db = SQLAlchemy(app)
+rd = FlaskRedis(app)
 
 from app.home import home as home_blueprint
 from app.admin import admin as admin_blueprint

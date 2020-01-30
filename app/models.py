@@ -212,7 +212,7 @@ class Oplog(db.Model):
     #
     # admin = Admin(
     #     name='zyd',
-    #     pwd=generate_password_hash('2733998'),
+    #     pwd=generate_password_hash('111111'),
     #     is_super=0,  # 是超级管理员
     #     role_id=1
     # )
